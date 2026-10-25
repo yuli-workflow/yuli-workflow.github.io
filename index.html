@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yuli Email Ops</title>
+<meta name="description" content="Yuli Email Ops is a private, personal-use tool that reads and sorts its owner's own Gmail inboxes to produce a daily triage summary.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f6f7f9;
+    --border: #e3e6ea;
+    --text: #1a1d21;
+    --muted: #5c6470;
+    --accent: #2f6f4e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161a;
+      --surface: #1c1f24;
+      --border: #2c3038;
+      --text: #e8eaed;
+      --muted: #9aa2ad;
+      --accent: #6fbf95;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161a;
+    --surface: #1c1f24;
+    --border: #2c3038;
+    --text: #e8eaed;
+    --muted: #9aa2ad;
+    --accent: #6fbf95;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+                 "PingFang TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+  h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .4rem; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin: 0 0 2.5rem; font-size: 1.02rem; }
+  h2 { font-size: 1.15rem; margin: 2.5rem 0 .75rem; letter-spacing: -.005em; }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0 0 1rem; padding-left: 1.3rem; }
+  li { margin-bottom: .4rem; }
+  a { color: var(--accent); }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    margin: 1.25rem 0;
+  }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+  .label {
+    display: inline-block;
+    font-size: .72rem;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .15rem .6rem;
+    margin-bottom: 1.25rem;
+  }
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .9rem;
+  }
+  code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: .1rem .35rem;
+    font-size: .88em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="label">Personal use · Single user</span>
+
+  <h1>Yuli Email Ops</h1>
+  <p class="sub">A private tool that reads and sorts its owner's own Gmail inboxes to produce a daily triage summary.</p>
+
+  <h2>What it does</h2>
+  <p>
+    Yuli Email Ops is a personal automation script run by its owner on their own computer.
+    It connects to the owner's own Gmail accounts and reads recent messages so it can produce
+    a short daily summary answering two questions:
+  </p>
+  <ul>
+    <li>Which of today's emails actually require the owner's personal attention?</li>
+    <li>Which online services are still tied to an old email address that should be migrated?</li>
+  </ul>
+  <p>
+    The goal is to reduce the number of emails the owner has to read and judge manually each day.
+  </p>
+
+  <h2>Who can use it</h2>
+  <p>
+    This application is not a product and is not offered to the public. It has exactly one user:
+    its owner, who authorizes access to their own mailboxes. There is no sign-up, no user accounts,
+    and no third-party access.
+  </p>
+
+  <h2>What access it requests</h2>
+  <div class="card">
+    <p><strong>Three scopes, each held as a separate token and used for one task:</strong></p>
+    <ul>
+      <li><code>gmail.readonly</code>: reading messages for the daily summary</li>
+      <li><code>gmail.modify</code>: adding the owner's own sorting labels, from a fixed list of five</li>
+      <li><code>gmail.compose</code>: placing reply drafts in the owner's Drafts folder</li>
+    </ul>
+    <p>
+      Google does not offer narrower scopes for labels or drafts, so the last two technically
+      permit more. The application's code refuses sending, deleting, archiving and removing
+      labels before any request is made. That is a control in the code, not a limit set by Google;
+      the <a href="privacy.html">Privacy Policy</a> describes it in full.
+    </p>
+  </div>
+
+  <h2>Where the data goes</h2>
+  <p>
+    Messages are retrieved on the owner's own computer, where each one is converted into a
+    <strong>structured record</strong>. The step that decides which messages matter is
+    <strong>not</strong> local: those records are sent to Claude, a large language model operated
+    by Anthropic PBC, which assigns each one a priority.
+  </p>
+  <p>
+    The records sent to Anthropic contain pseudonymous identifiers, labels from fixed lists,
+    <strong>monetary amounts, dates</strong>, counts and true/false flags. They do not contain
+    message bodies, subject lines, excerpts, sender names, sender addresses, sender domains or
+    attachment file names.
+  </p>
+  <p>
+    In the daily summary, message text does not leave the computer, but information
+    <em>about</em> messages does, and that is personal data.
+  </p>
+  <p>
+    <strong>One exception:</strong> when the owner labels an individual message in Gmail as a
+    newsletter to study or a class notice, the full text of that one message is sent to Anthropic
+    so it can be analysed or turned into a calendar event. Receipts the owner labels are turned
+    into a structured record (service, amount, dates) and written to the owner's own Notion
+    subscription tracker.
+  </p>
+  <p>
+    Four third parties are involved overall &mdash; Google as the mail and calendar provider,
+    Anthropic for classification, GitHub, which stores a pseudonymous migration register, and
+    Notion, which holds the owner's subscription tracker. Nothing is sold, rented, or used for
+    advertising.
+  </p>
+  <p>
+    The full list of third parties, what each one receives, what is removed before anything is
+    sent, and the stated limits of those controls are in the
+    <a href="privacy.html">Privacy Policy</a>.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this application can be sent to <strong>yuli.workflow@gmail.com</strong>.
+  </p>
+
+  <footer>
+    <p>
+      <a href="privacy.html">Privacy Policy</a>
+      &nbsp;·&nbsp; Yuli Email Ops &nbsp;·&nbsp; Personal, non-commercial, single-user application.
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

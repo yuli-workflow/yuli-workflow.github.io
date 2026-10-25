@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy: Yuli Email Ops</title>
+<meta name="description" content="Privacy policy for Yuli Email Ops, a private single-user tool that reads and sorts its owner's own Gmail. Describes every third party that receives or stores data.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f6f7f9;
+    --border: #e3e6ea;
+    --text: #1a1d21;
+    --muted: #5c6470;
+    --accent: #2f6f4e;
+    --warn-bg: #fdf6e7;
+    --warn-border: #e6d3a3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161a;
+      --surface: #1c1f24;
+      --border: #2c3038;
+      --text: #e8eaed;
+      --muted: #9aa2ad;
+      --accent: #6fbf95;
+      --warn-bg: #2a2416;
+      --warn-border: #4d4023;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161a;
+    --surface: #1c1f24;
+    --border: #2c3038;
+    --text: #e8eaed;
+    --muted: #9aa2ad;
+    --accent: #6fbf95;
+    --warn-bg: #2a2416;
+    --warn-border: #4d4023;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+                 "PingFang TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+  h1 { font-size: 1.75rem; line-height: 1.3; margin: 0 0 .4rem; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin: 0 0 2.5rem; font-size: .95rem; }
+  h2 { font-size: 1.1rem; margin: 2.25rem 0 .7rem; letter-spacing: -.005em; }
+  h3 { font-size: .98rem; margin: 1.5rem 0 .5rem; }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0 0 1rem; padding-left: 1.3rem; }
+  li { margin-bottom: .4rem; }
+  a { color: var(--accent); }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    margin: 1.25rem 0;
+  }
+  .card.warn { background: var(--warn-bg); border-color: var(--warn-border); }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+  .table-scroll { overflow-x: auto; margin: 1.25rem 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+  th, td {
+    border: 1px solid var(--border);
+    padding: .55rem .75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--surface); font-weight: 600; }
+  code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: .1rem .35rem;
+    font-size: .88em;
+    word-break: break-all;
+  }
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .9rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Privacy Policy</h1>
+  <p class="sub">Yuli Email Ops &nbsp;·&nbsp; Last updated: 25 October 2026</p>
+
+  <h2>1. Overview</h2>
+  <p>
+    Yuli Email Ops ("the application") is a private, non-commercial tool operated by a single
+    individual ("the owner") for the owner's own Gmail mailboxes. Its purpose is to reduce the
+    number of messages the owner has to read personally each day, by sorting them into priority
+    categories and pulling out details such as deadlines, amounts and renewal dates.
+  </p>
+  <p>
+    The application is not offered to the public. It has no sign-up, no user accounts, no backend
+    server, and no other users. The only person who authorises it, and the only person whose
+    mailboxes it reads, is the owner.
+  </p>
+  <p>
+    This policy describes what the application does, and names <strong>every third party that
+    receives or stores data derived from those mailboxes</strong>. Where the application relies on
+    controls rather than guarantees, this policy says so.
+  </p>
+
+  <h2>2. What the application accesses</h2>
+  <p>
+    The application holds three separate authorisations for each mailbox. Each is stored as its
+    own token, and each program uses only the token for its own task.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Scope</th><th>Used for</th><th>What the code allows</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>gmail.readonly</code></td>
+          <td>Daily triage, account migration, and reading messages the owner has labelled (section 4)</td>
+          <td>Reading only. Google itself rejects any change made with this token.</td>
+        </tr>
+        <tr>
+          <td><code>gmail.modify</code></td>
+          <td>Adding the owner's own sorting labels</td>
+          <td>Adding labels from a fixed list of five owner-created labels (for example "keep: receipt" or "move to main inbox"). Nothing else.</td>
+        </tr>
+        <tr>
+          <td><code>gmail.compose</code></td>
+          <td>Preparing reply drafts for the owner to review</td>
+          <td>Creating drafts only. The draft is left in the owner's Drafts folder; sending is done, if at all, by the owner by hand.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card warn">
+    <p>
+      <strong>Stated limits.</strong> Google does not offer a "labels only" or "drafts only" scope.
+      <code>gmail.modify</code> technically permits archiving, trashing and removing labels, and
+      <code>gmail.compose</code> technically permits sending. The application's code does not expose
+      those operations: every outgoing request is checked against an allow-list of endpoints and
+      request bodies, and anything else is refused before it is sent. This is a control in the
+      application's code, not a restriction enforced by Google.
+    </p>
+  </div>
+  <p>Using these scopes, the application reads from the owner's own mailboxes:</p>
+  <ul>
+    <li>Message headers: sender, recipients, subject, date, unsubscribe header</li>
+    <li>Message bodies, in plain text</li>
+    <li>Attachment file names, media types and sizes &mdash; attachment contents are not downloaded</li>
+    <li>Gmail label identifiers and read/unread status</li>
+  </ul>
+  <p>
+    All of the above is read into the memory of a program running on the owner's computer.
+    Section 4 describes which parts of it then leave that computer, and which do not.
+  </p>
+
+  <h2>3. How the data is used</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Purpose</th><th>What happens</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Daily triage</td>
+          <td>Messages are sorted into priority categories so the owner can see which ones need action.</td>
+        </tr>
+        <tr>
+          <td>Detail extraction</td>
+          <td>Deadlines, amounts, renewal dates and similar details are extracted into a short summary.</td>
+        </tr>
+        <tr>
+          <td>Account migration</td>
+          <td>Senders in an older mailbox are grouped to identify services still tied to an address the owner is retiring.</td>
+        </tr>
+        <tr>
+          <td>Sorting labels</td>
+          <td>The result of triage is shown in Gmail by adding one of the owner's own labels to the message.</td>
+        </tr>
+        <tr>
+          <td>Subscription records</td>
+          <td>For receipts the owner has labelled, the service name, amount, next charge date, billing cycle and plan name are written to the owner's own subscription tracker in Notion.</td>
+        </tr>
+        <tr>
+          <td>Class schedule</td>
+          <td>For class or event notices the owner has labelled, the event is added to, changed in or removed from a calendar in the owner's own Google Calendar.</td>
+        </tr>
+        <tr>
+          <td>Newsletter research</td>
+          <td>For newsletters the owner has labelled, the writing structure is analysed so the owner can learn from it. Notes are kept on the owner's computer.</td>
+        </tr>
+        <tr>
+          <td>Reply drafts</td>
+          <td>Draft replies are placed in the owner's Drafts folder for the owner to review.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The data is not used for any other purpose.</p>
+
+  <h2>4. Where the data goes</h2>
+  <p>
+    Processing is split between the owner's computer and a remote service. The split is the
+    most important thing in this policy, so it is set out stage by stage.
+  </p>
+
+  <h3>Stage 1 &mdash; Retrieval and extraction (owner's computer)</h3>
+  <p>
+    A program on the owner's computer calls the Gmail API, holds the response in memory, removes
+    the categories of data listed in section 6, and then converts each message into a
+    <strong>structured record</strong>. The full text of the message is not carried forward into
+    that record.
+  </p>
+
+  <h3>Stage 2 &mdash; Classification (remote, Anthropic PBC)</h3>
+  <p>
+    The structured records are sent to Claude, a large language model operated by Anthropic PBC,
+    which assigns each record a priority category and a suggested action type. The following table
+    states exactly what is and is not included in what is sent.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Sent to Anthropic</th><th>Not included in what is sent</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <ul>
+              <li>A per-run pseudonymous identifier for each message (e.g. <code>MSG-0007</code>)</li>
+              <li>A pseudonymous identifier for each sending service (e.g. <code>SVC-017</code>)</li>
+              <li>A service category label from a fixed list (for example <code>bank</code>, <code>ecommerce</code>, <code>saas</code>)</li>
+              <li>A message type label from a fixed list (for example <code>invoice</code>, <code>security-alert</code>)</li>
+              <li>Labels from a fixed list of signals observed in the message (for example <code>payment_failed</code>, <code>renewal_upcoming</code>)</li>
+              <li><strong>Monetary amounts as numbers, with ISO currency codes</strong></li>
+              <li><strong>Dates in normalised form, with a role such as deadline or renewal</strong></li>
+              <li>Counts: number of attachments, number of links, message length</li>
+              <li>Statistics about how many items were removed at stage 1, by category code</li>
+              <li>True/false flags such as unread status and presence of an unsubscribe header</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Message bodies</li>
+              <li>Subject lines</li>
+              <li>Excerpts, snippets or quotations of message text</li>
+              <li>Sender display names, sender email addresses and sender domains</li>
+              <li>Recipient addresses</li>
+              <li>Attachment file names</li>
+              <li>Gmail label names</li>
+              <li>Any other free-form text originating from a message</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <p>
+      <strong>What this does and does not mean.</strong> Message text does not leave the owner's
+      computer as part of normal operation. Information <em>about</em> messages does: in
+      particular, monetary amounts, dates, and the fact that a pseudonymous service falls into a
+      category such as <code>bank</code>. That is personal data about the owner, and it is
+      processed on infrastructure operated by Anthropic PBC.
+    </p>
+  </div>
+  <p>
+    Records that the program cannot convert into a reliable structured form are marked for the
+    owner to read personally and are not sent at all.
+  </p>
+
+  <h3>Stage 3 &mdash; Summary rendering (owner's computer)</h3>
+  <p>
+    The pseudonymous identifiers are matched back to real service names on the owner's computer,
+    using a lookup table that is held locally, and the daily summary is assembled there. That
+    summary is not sent back to Anthropic.
+  </p>
+
+  <h3>Exception &mdash; Messages the owner labels personally</h3>
+  <p>
+    Stages 1 to 3 describe the daily triage. Separately, the owner can apply a label in Gmail to
+    an individual message to ask for it to be handled. Messages labelled this way are processed
+    differently, and the difference is set out here in full.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Owner's label</th><th>Sent to Anthropic</th><th>Written elsewhere</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Newsletter to study</td>
+          <td><strong>The full subject line and body of that one message.</strong></td>
+          <td>Notes on writing structure, kept on the owner's computer.</td>
+        </tr>
+        <tr>
+          <td>Class or event notice</td>
+          <td><strong>The full subject line and body of that one message.</strong></td>
+          <td>One event in the owner's Google Calendar: title, time, meeting link as written in the message, and a note of where the notice came from.</td>
+        </tr>
+        <tr>
+          <td>Subscription receipt</td>
+          <td>Not the message text. A structured record only (service name, amount, currency, dates, billing cycle, plan name), checked against an allow-list before it is sent.</td>
+          <td>One row in the owner's subscription tracker in Notion with the same fields. Card numbers and card last-four digits are never written.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card warn">
+    <p>
+      <strong>What this means.</strong> For the first two labels, the complete text of the labelled
+      message, including anything written in it about other people, is processed on infrastructure
+      operated by Anthropic PBC. Only messages the owner has labelled one by one are read this way:
+      the program reads one message at a time, by its identifier, and refuses any message that does
+      not carry the matching label. Links in the message are copied as text and are not opened.
+    </p>
+  </div>
+
+  <h2>5. Third parties that receive or store data</h2>
+  <p>
+    The following is the complete list of third parties that receive, process or store data
+    derived from the owner's mailboxes.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Party</th><th>What it receives or stores</th><th>Why</th><th>Governed by</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Google LLC</strong></td>
+          <td>The mailboxes themselves, the OAuth authorisation and token exchange, the owner's sorting labels and reply drafts in Gmail, and class events in the owner's Google Calendar.</td>
+          <td>Google is the mail provider and the source of the data. The application reads from it and writes the owner's labels, drafts and calendar events back to the owner's own account.</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></td>
+        </tr>
+        <tr>
+          <td><strong>Anthropic PBC</strong></td>
+          <td>The structured records described in section 4: pseudonymous identifiers, fixed-list labels, numeric amounts with currency codes, normalised dates, counts and true/false flags. <strong>For messages the owner labels as a newsletter to study or a class notice, the full subject line and body of that message.</strong></td>
+          <td>Classification and prioritisation are performed by a Claude model running on Anthropic's infrastructure.</td>
+          <td><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">Anthropic Privacy Policy</a>, plus the plan and settings on the owner's Anthropic account</td>
+        </tr>
+        <tr>
+          <td><strong>GitHub, Inc.</strong></td>
+          <td>A migration register listing pseudonymous service identifiers, service category labels, message counts, first/last seen dates and the owner's migration decisions. It does not contain service names, sender domains, mailbox addresses or message text.</td>
+          <td>The owner keeps the project in a source repository hosted by GitHub, so that the register survives machine failure.</td>
+          <td><a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>, plus the owner's repository access settings</td>
+        </tr>
+        <tr>
+          <td><strong>Notion Labs, Inc.</strong></td>
+          <td>Rows in the owner's private subscription tracker: service name, amount paid, next charge date, billing cycle and plan name, for receipts the owner has labelled.</td>
+          <td>The owner keeps track of paid subscriptions in a Notion workspace only the owner can access.</td>
+          <td><a href="https://www.notion.so/notion/Privacy-Policy-3468d120cf614d4c9014c09f6adc9091" target="_blank" rel="noopener noreferrer">Notion Privacy Policy</a>, plus the owner's workspace sharing settings</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Anthropic, GitHub and Notion may in turn rely on their own infrastructure providers and
+    sub-processors. The application has no visibility into, and makes no representation about,
+    who those are; they are governed by the policies linked above.
+  </p>
+  <p>
+    Daily summaries, the identifier-to-service-name lookup table, any retained raw output and the
+    OAuth tokens are held on the owner's computer and are excluded from the source repository by
+    configuration. They are therefore not expected to reach GitHub. This is a configured control,
+    not a property of the system: a configuration error could defeat it.
+  </p>
+  <p>
+    Beyond the four parties named above, the application does not sell, rent, license or
+    otherwise disclose the data, does not use it for advertising or profiling, and gives no other
+    person access to its output.
+  </p>
+
+  <h2>6. What is removed before data leaves the computer</h2>
+  <p>
+    Before anything is sent, the program removes the following from the material it works with,
+    replacing each with a marker:
+  </p>
+  <ul>
+    <li>One-time passcodes, verification codes and passwords</li>
+    <li>API keys, tokens and similar credentials</li>
+    <li>Query strings and long paths in URLs, which can act as sign-in links</li>
+    <li>National identity numbers, passport numbers, telephone numbers and street addresses</li>
+    <li>Full card numbers, card last-four digits and bank account numbers</li>
+    <li>Invoice, order and transaction reference numbers</li>
+    <li>The email local part of any address (the portion before the <code>@</code>)</li>
+  </ul>
+  <p>
+    Because the structured records described in section 4 contain no free-form text fields, text
+    that this step fails to catch still has no field in which it could be transmitted. The removal
+    step is a second line of defence, not the only one. This does not apply to messages the owner
+    labels as a newsletter to study or a class notice: their full text is read as described in
+    section 4.
+  </p>
+  <div class="card warn">
+    <p>
+      <strong>Stated limits.</strong> The removal step uses pattern matching, not comprehension,
+      and will not recognise every possible way of writing a sensitive value. Names of third
+      parties appearing inside messages cannot be reliably detected. The controls described in
+      this policy reduce exposure; they do not eliminate it, and this policy does not claim that
+      they do.
+    </p>
+  </div>
+
+  <h2>7. Changes in processing</h2>
+  <h3>September 2026</h3>
+  <p>
+    The owner added sorting labels in Gmail (<code>gmail.modify</code>), reply drafts
+    (<code>gmail.compose</code>), subscription records in Notion, class events in Google Calendar,
+    and full-text reading of individual messages the owner labels personally. Sections 2 to 5
+    describe these. The previous version of this policy, dated 25 August 2026, did not.
+  </p>
+  <h3>August 2026</h3>
+  <p>
+    Earlier versions of this application sent complete message content &mdash; bodies, subjects,
+    sender addresses and anything contained in them &mdash; to Anthropic PBC for classification,
+    and an earlier version of this policy described the application as processing data only on the
+    owner's computer. That description was incorrect.
+  </p>
+  <p>
+    The application was suspended, the pipeline was rebuilt to the structured form described in
+    section 4, and this policy was rewritten to match. Data transmitted before that change remains
+    subject to the receiving party's retention terms and cannot be recalled by the owner or by
+    this application.
+  </p>
+
+  <h2>8. Limited Use disclosure</h2>
+  <div class="card">
+    <p>
+      Yuli Email Ops' use and transfer of information received from Google APIs to any other app
+      will adhere to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy"
+         target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>,
+      including the Limited Use requirements.
+    </p>
+  </div>
+
+  <h2>9. Security</h2>
+  <ul>
+    <li>OAuth tokens are stored outside the application's source directory and are excluded from version control by configuration.</li>
+    <li>Each task uses its own token with the narrowest scope that meets its purpose, and checks at runtime that the token carries no broader permission, refusing to run if it does.</li>
+    <li>Requests that change anything in Gmail are checked against an allow-list of endpoints and request bodies; sending, trashing, archiving and removing labels are refused before any request is made.</li>
+    <li>Outbound records are checked against a schema and a value-level allow-list before they are sent; records that fail are not sent.</li>
+    <li>The component that performs classification is configured without file system or network access, so that instructions embedded in a message cannot cause it to take an action.</li>
+    <li>Links contained in messages are not opened or followed by the application.</li>
+    <li>Attachment contents are not downloaded or opened.</li>
+  </ul>
+
+  <h2>10. Retention and deletion</h2>
+  <p>
+    Summaries, the lookup table and any retained raw output are files on the owner's computer and
+    can be deleted by the owner at any time. Deleting them removes the local copy only. It has no
+    effect on any copy held by a party named in section 5, whose retention is governed by that
+    party's own terms.
+  </p>
+
+  <h2>11. Revoking access</h2>
+  <p>The owner can withdraw the application's access at any time by either:</p>
+  <ul>
+    <li>removing "Yuli Email Ops" at
+      <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">
+        myaccount.google.com/permissions</a>; or</li>
+    <li>deleting the locally stored token files.</li>
+  </ul>
+  <p>Either action stops further access.</p>
+
+  <h2>12. Data subjects</h2>
+  <p>
+    The owner is the sole user and the primary data subject. No other person's mailbox is
+    accessed. Messages in the owner's mailboxes may nonetheless contain information about the
+    people and organisations that sent them; section 6 describes what is removed from that
+    material before anything is sent, and the limits of that removal.
+  </p>
+
+  <h2>13. Children</h2>
+  <p>The application is used solely by its adult owner and is not directed to children.</p>
+
+  <h2>14. Changes</h2>
+  <p>
+    If this policy changes, the revised version will be published at this address with an updated
+    date at the top of the page.
+  </p>
+
+  <h2>15. Contact</h2>
+  <p>
+    Enquiries about this application or this policy may be sent to:
+    <strong>yuli.workflow@gmail.com</strong>
+  </p>
+
+  <footer>
+    <p><a href="index.html">&larr; Yuli Email Ops</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
